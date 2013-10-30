@@ -1,0 +1,5 @@
+This concept is all about securing Centos installations.
+
+This concept already evolved to standalone project:
+
+https://github.com/docent-net/SecureCentos

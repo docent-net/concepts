@@ -8,6 +8,11 @@ believe, that most of solutions should be open - sourced. That's why I created
 this 'concepts' repo. I'll put here my ideas and also - every interesting
 concept I heard on talks / conferences / events.
 
+Concepts description:
+--------------
+   * booter - how could we speedup Linux boot process?
+   * SecureCentos - how could we maximize Centos security?
+
 License:
 --------------
 
