@@ -1,0 +1,36 @@
+##############################################################################
+#
+# This concepts covers case of speeding up the Linux boot process.
+# Believe me (or not) - it made me someday win the Samsung R&D Competition
+# that took place at Linux Autumn Conference 2013 in Poland ;)
+#
+# Feel free to add / write anything here - this is very interesting topic from
+# sysop's point of view so any new ideas or disagreements / debates are welcome
+#
+# http://maciek.lasyk.info
+# Twitter: @docent_net
+#
+##############################################################################
+# Copyright 2013 Maciej Lasyk
+#
+#         Licensed under the Apache License, Version 2.0 (the "License");
+#         you may not use this file except in compliance with the License.
+#         You may obtain a copy of the License at
+#
+#                 http://www.apache.org/licenses/LICENSE-2.0
+#
+#         Unless required by applicable law or agreed to in writing, software
+#         distributed under the License is distributed on an "AS IS" BASIS,
+#         WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#         See the License for the specific language governing permissions and
+#         limitations under the License.
+##############################################################################
+
+1. Do it only on specific runlevel - i.e. 2 as we use it on servers.
+2. Obvious things: grub timeout 0, automate drives decryption process (can't say how - this is for security reasons)
+3. Recompile kernel. Seriously. Make it tiny and skinny - throw away any unused modules. If working on slow hardware You can really get a nice kick.
+4. Profile boot - process (e.g. bootchart). See what's happening there. Any weird behaviours?
+5. Think how to make loading of servicess parallel. This is the main problem. Some distros have it (i.e. Debian) some not (Centos).
+6. Do services really need to depend on network resources? I've seen situations, where some not - network service depended on NFS. Wat???
+7. Tune up kernel params, set vm.swappiness=0 for boot time. After that you can set whatever you had.
+8. (thanks to Frogu, https://github.com/frogu): use ld_preload for libraries. ldd would help to define what libraries we're talking about.
