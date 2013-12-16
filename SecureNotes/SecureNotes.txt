@@ -1,0 +1,51 @@
+##############################################################################
+#
+# This concepts is all about creating secure solution for keeping notes &
+# photos both on srv, desktop & mobile devices
+#
+# http://maciek.lasyk.info
+# Twitter: @docent_net
+#
+##############################################################################
+# Copyright 2013 Maciej Lasyk
+#
+#         Licensed under the Apache License, Version 2.0 (the "License");
+#         you may not use this file except in compliance with the License.
+#         You may obtain a copy of the License at
+#
+#                 http://www.apache.org/licenses/LICENSE-2.0
+#
+#         Unless required by applicable law or agreed to in writing, software
+#         distributed under the License is distributed on an "AS IS" BASIS,
+#         WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#         See the License for the specific language governing permissions and
+#         limitations under the License.
+##############################################################################
+
+1. As we want to have our data accessible on any devices (PCs, mobile, laptops, 
+   servers) thus we should stick to OwnCloud solution http://owncloud.org
+2. Owncloud has many sec flaws, so in order to keep things secure we should
+   create own PKI (own CA) and than create webcerts & user certs. No access
+   should be allowed without proper user SSL cert
+3. Also there is need for a VPN (VPN-access only to whole owncloud solution).
+   Looks like OpenVPN will be good enough (with lack of iOS support - sorry).
+4. HA considerations:
+   a) As we're basing on VPN access only than OpenVPN should have been deployed
+      in HA manner.
+   b) We should have minimum 2 storage nodes synced with GlusterFS replica bricks.
+      As it is all over VPN than we don't have to add any SSH-tunneling layer here.
+      But.. maybe we should. Or at least different VLAN for sync (but than our HA
+      would not be that High as VLAN means same DC; it would be better to keep
+      HA storage nodes in different DCs... so maybe GlusterFS sync over SSH tunnel).
+   c) DNS HA could be achieved via classical 2 - nodes (master-slave and AXFR) arch.
+      DNSes could be deployed on those 2 storage nodes in different DCs.
+   d) Load balancing - classical RoundRobin over DNS (so semi - LB). As there's no 
+      way to achieve IP-failover over different DCs withoug BGP involved, than we
+      could also stick to some enterprise solution (Anycast on DNSMadeEasy or IP
+      Failover between DCs in Softlayer/IBM DCs or AWS. But we _do_not_ want to rely
+      on any non-open-soource solution. So we have to stay with RoundRobin over DNSes.
+5. It's all about encryption. Servers storage should be encrypted (both - whole disk
+   enc and separately just GlusterFS storage). Also we should keep any client-side
+   storage encrypted. But this one could be achieved only by strict and manual 
+   encryption on the client side.
+   
