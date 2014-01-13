@@ -10,3 +10,7 @@
 # Twitter: @docent_net
 #
 ##############################################################################
+
+1) ICMPGW: What about communication via ICMP? We could load some payload into 
+   ICMP    packet so it could pass IDSes etc. Need some client/server here. 
+   POC in Python and than move to C, compile and create some bin.
