@@ -11,6 +11,7 @@ concept I heard on talks / conferences / events.
 Concepts description:
 --------------
    * booter - how could we speedup Linux boot process?
+   * BrainStormIdeas - some ideas that came out of nowhere
    * Centos-2-factor-auth - how about creating solution that covers 2-factor
      ssh auth?
    * SecureCentos - how could we maximize Centos security?

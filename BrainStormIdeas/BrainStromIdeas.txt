@@ -1,0 +1,12 @@
+##############################################################################
+#
+# Those are some of my ideas that came out of nowhere but I though it will
+# be good to save those as maybe I will somehow find some time to implement
+# it :)
+#
+# Feel free to add / write anything here.
+#
+# http://maciek.lasyk.info
+# Twitter: @docent_net
+#
+##############################################################################
